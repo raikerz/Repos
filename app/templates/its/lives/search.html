@@ -1,0 +1,83 @@
+<!-- app/templates/admin/equipment/equipments.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Search| Lives{% endblock %}
+{% block body %}
+<div class="mainbg">
+  <div class="content-section">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">Search Lives</h1>
+         <form class="search" method ="GET" action="search">
+              <input type="text" name="query" id="query" placeholder="Search..">
+            </form>
+          {% if lives %}
+
+          <hr class="intro-divider">
+            <table class="table table-striped table-bordered">
+              <thead>
+               <tr>
+                  <th width="15%"> Date </th>
+                  <th width="13%"> Client </th>
+                  <th width="7%"> Service Provided </th>
+                  <th width="13%"> Location </th>
+                  <th width="7%"> S GMT </th>
+                  <th width="7%"> E GMT </th>
+                  <th width="13%"> Satellite </th>
+                  <th width="9%"> Uplink </th>
+                  <th width="9%"> Downlink </th>
+                  <th width="7%"> Symbol Rate </th>
+                  <th width="5%"> FEC </th>
+                  <th width="13%"> Modulation </th>
+                  <th width="13%"> Access
+                  <th width="13%"> Reg Code </th>
+                  <th width="13%"> Reference </th>
+                  <th width="13%"> Actual S Time </th>
+                  <th width="13%"> Actual E Time </th>
+                  <th width="13%"> Note </th>
+               </tr>
+              </thead>
+              <tbody>
+              {% for lives in lives %}
+                <tr>
+                    <td>{{ lives.date }}  </td>
+                    <td>{{ lives.company }} </td>
+                    <td> {{ lives.service_provided }} </td>
+                    <td style="color:red;"><font size="3"> {{ lives.location }} </font></td>
+                    <td> {{ lives.time_gmt_s }}  </td>
+                    <td> {{ lives.time_gmt_e }}  </td>
+                    <td> {{ lives.sat }}  </td>
+                    <td> {{ lives.ul }}  </td>
+                    <td> {{ lives.dl }}  </td>
+                    <td> {{ lives.sr }}  </td>
+                    <td> {{ lives.fec }}  </td>
+                    <td> {{ lives.mod }}  </td>
+                    <td> {{ lives.access }}  </td>
+                    <td> {{ lives.reg_code }} </td>
+                    <td> {{ lives.reference }}  </td>
+                    <td> {{ lives.actual_s_time }}  </td>
+                    <td> {{ lives.actual_e_time }}  </td>
+                    <td> {{ lives.note }}  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No lives have been matched. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+            <a href="{{ url_for('its.list_lives') }}" class="btn btn-default btn-lg">
+            <i class="fa fa-plus"></i>
+                Lives </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

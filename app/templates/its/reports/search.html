@@ -1,0 +1,86 @@
+<!-- app/templates/admin/equipment/equipments.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Search| Reports{% endblock %}
+{% block body %}
+<div class="mainbg">
+  <div class="content-section">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">Search Reports</h1>
+         <form class="search" method ="GET" action="search">
+              <input type="text" name="query" id="query" placeholder="Search..">
+            </form>
+          {% if reports %}
+
+          <hr class="intro-divider">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="13%"> Client </th>
+                  <th width="17%"> Service Provided</th>
+                  <th width="13%"> Location</th>
+                  <th width="13%"> Space </th>
+                  <th width="13%"> S Time GMT </th>
+                  <th width="13%"> E Time GMT </th>
+                  <th width="13%"> Extension </th>
+                  <th width="13%"> Actual S Time </th>
+                  <th width="13%"> Actual E Time </th>
+                  <th width="13%"> Duration </th>
+                  <th width="20%"> Engineer </th>
+                  <th width="17%"> Reference No. </th>
+                  <th width="20%"> Guest </th>
+                  <th width="20%"> Transport Company </th>
+                  <th width="20%"> Transport Kind </th>
+                  <th width="13%"> Note </th>
+                  <th width="13%"> Extra Fees </th>
+                  <th width="13%"> Date</th>
+                  <th width="13%"> Type </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for reports in reports %}
+                <tr>
+                  <td> {{ reports.company }} </td>
+                  <td> {{ reports.service_provided }} </td>
+                  <td> {{ reports.location }}  </td>
+                  <td> {{ reports.space }}  </td>
+                  <td> {{ reports.time_gmt_s }}  </td>
+                  <td> {{ reports.time_gmt_e }}  </td>
+                  <td> {{ reports.extension }}  </td>
+                  <td> {{ reports.actual_s_time }}  </td>
+                  <td> {{ reports.actual_e_time }}  </td>
+                  <td> {{ reports.duration }}  </td>
+                  <td> {{ reports.engineer }}  </td>
+                  <td> {{ reports.reference }}  </td>
+                  <td> {{ reports.guest }}  </td>
+                  <td> {{ reports.transport_company }}  </td>
+                  <td> {{ reports.transport_kind }}  </td>
+                  <td> {{ reports.note }}  </td>
+                  <td> {{ reports.extrafees }}  </td>
+                  <td> {{ reports.date }}  </td>
+                  <td> {{ reports.type }}  </td>
+
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No reports has been matched. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+            <a href="{{ url_for('its.list_reports') }}" class="btn btn-default btn-lg">
+            <i class="fa fa-plus"></i>
+                Reports </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

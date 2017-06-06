@@ -1,0 +1,86 @@
+<!-- app/templates/admin/equipment/equipments.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Search| SNG Orders{% endblock %}
+{% block body %}
+<div class="mainbg">
+  <div class="content-section">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">Search SNG Orders</h1>
+         <form class="search" method ="GET" action="search">
+              <input type="text" name="query" id="query" placeholder="Search..">
+            </form>
+          {% if sngorders %}
+
+          <hr class="intro-divider">
+            <table class="table table-striped table-bordered">
+              <thead>
+               <tr>
+                  <tr>
+                    <th width="13%"> Date </th>
+                    <th width="13%"> Client </th>
+                    <th width="17%"> Engineer </th>
+                    <th width="13%"> Location</th>
+                    <th width="13%"> Reference </th>
+                    <th width="13%"> S Time GMT </th>
+                    <th width="13%"> E Time GMT </th>
+                    <th width="13%"> Camera Man </th>
+                    <th width="13%"> Technician </th>
+                    <th width="13%"> Driver </th>
+                    <th width="13%"> Camera </th>
+                    <th width="13%"> Car </th>
+                    <th width="13%"> Note </th>
+                    <th width="15%"> Edit </th>
+                    <th width="15%"> Delete </th>
+                  </tr>
+              </thead>
+              <tbody>
+              {% for sngorders in sngorders %}
+                <tr>
+                    <td> {{ sngorders.date }}  </td>
+                    <td> {{ sngorders.company }} </td>
+                    <td> {{ sngorders.engineer }} </td>
+                    <td> {{ sngorders.location }}  </td>
+                    <td> {{ sngorders.reference }}  </td>
+                    <td> {{ sngorders.time_gmt_s }}  </td>
+                    <td> {{ sngorders.time_gmt_e }}  </td>
+                    <td> {{ sngorders.cameraman }}  </td>
+                    <td> {{ sngorders.tech }}  </td>
+                    <td> {{ sngorders.driver }}  </td>
+                    <td> {{ sngorders.camera }}  </td>
+                    <td> {{ sngorders.car }}  </td>
+                    <td> {{ sngorders.note }}  </td>
+                    <td>
+                        <a href="{{ url_for('its.edit_sngorders', id=sngorders.id) }}">
+                            <i class="fa fa-pencil"></i> Edit
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('its.delete_sngorders', id=sngorders.id) }}">
+                            <i class="fa fa-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No SNG Orders has been matched. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+            <a href="{{ url_for('its.list_sngorders') }}" class="btn btn-default btn-lg">
+            <i class="fa fa-plus"></i>
+                SNG Orders </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

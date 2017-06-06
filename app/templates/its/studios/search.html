@@ -1,0 +1,105 @@
+<!-- app/templates/admin/equipment/equipments.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Search| Studios{% endblock %}
+{% block body %}
+<div class="mainbg">
+  <div class="content-section">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">Search Studios</h1>
+         <form class="search" method ="GET" action="search">
+              <input type="text" name="query" id="query" placeholder="Search..">
+            </form>
+          {% if studios %}
+          <hr class="intro-divider">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                 <th width="13%"> Date </th>
+                <th width="13%"> Client </th>
+                <th width="13%"> Show Name </th>
+                <th width="13%"> Reference No. </th>
+                <th width="13%"> S Time GMT </th>
+                <th width="13%"> E Time GMT </th>
+                <th width="6%"> Guests Count </th>
+                <th width="13%"> Guests </th>
+                <th width="13%"> Note </th>
+                <th width="15%"> Edit </th>
+                <th width="15%"> Delete </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for studios in studios %}
+                <tr>
+                  <td> {{ studios.date }} </td>
+                    <td> {{ studios.company }} </td>
+                    <td> {{ studios.showname }} </td>
+                    <td> {{ studios.reference }} </td>
+                    <td> {{ studios.time_gmt_s }}  </td>
+                    <td> {{ studios.time_gmt_e }}  </td>
+                    <td> {{ studios.guest_counter }}  </td>
+                    <td> {{ studios.guest1}}  <br>
+                        {% if transports.guest2 %}
+                        {{ transports.guest2 }}  <br>
+                        {% endif %}
+                    {% endif %}
+                    {% if transports.guest3 %}
+                    {{ transports.guest3 }}  <br>
+                    {% endif %}
+                    {% if transports.guest4 %}
+                    {{ transports.guest4 }}  <br>
+                    {% endif %}
+                    {% if transports.guest5 %}
+                    {{ transports.guest5 }}  <br>
+                    {% endif %}
+                    {% if transports.guest6 %}
+                    {{ transports.guest6 }}  <br>
+                    {% endif %}
+                    {% if transports.guest7 %}
+                    {{ transports.guest7 }}  <br>
+                    {% endif %}
+                    {% if transports.guest8 %}
+                    {{ transports.guest8 }}  <br>
+                    {% endif %}
+                    {% if transports.guest9 %}
+                    {{ transports.guest9 }}  <br>
+                    {% endif %}
+                    {% if transports.guest10 %}
+                    {{ transports.guest10 }}
+                    {% endif %} </td>
+                    <td> {{ studios.note }}  </td>
+                  <td>
+                      <a href="{{ url_for('its.edit_studios', id=studios.id) }}">
+                          <i class="fa fa-pencil"></i> Edit
+                      </a>
+                  </td>
+                  <td>
+                      <a href="{{ url_for('its.delete_studios', id=studios.id) }}">
+                          <i class="fa fa-trash"></i> Delete
+                      </a>
+                  </td>
+
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No studios reports have been matched. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+            <a href="{{ url_for('its.list_studios') }}" class="btn btn-default btn-lg">
+            <i class="fa fa-plus"></i>
+                Studios </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

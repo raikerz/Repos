@@ -1,0 +1,26 @@
+ {% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}
+    {% if add_equipment %}
+        Add SNG Order
+    {% else %}
+        Edit SNG Order
+    {% endif %}
+{% endblock %}
+{% block body %}
+<div class="mainbg">
+   <div class="content-section">
+     <div class="inner">
+        <div class="center">
+            {% if add_equipment %}
+                <h1>Add SNG Order</h1>
+            {% else %}
+                <h1>Edit SNG Order</h1>
+            {% endif %}
+            <br/>
+            {{ wtf.quick_form(form) }}
+        </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

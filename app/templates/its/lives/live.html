@@ -1,0 +1,112 @@
+ {% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}
+    {% if add_lives %}
+        Add Lives
+    {% else %}
+        Edit Lives
+    {% endif %}
+{% endblock %}
+{% block body %}
+<div class="mainbg">
+  <div class="content-section">
+      <div class="inner">
+        <div class="center" >
+            {% if add_lives %}
+                <h1>Add Lives</h1>
+            {% else %}
+                <h1>Edit Lives</h1>
+            {% endif %}
+            <br/>
+            {{ wtf.quick_form(form) }}
+            <br>
+                 <div id="chibb">
+                    <table class="table table-striped table-bordered" style="width:15%">
+                      <tr>
+                        <th style="color:red; border:1px solid red;">Channel</th>
+                        <th style="color:red; border:1px solid red;">IBB</th>
+                      </tr>
+                      <tr>
+                        <td>Sat</td>
+                        <td>E10A D10</td>
+                      </tr>
+                       <tr>
+                        <th>U/L</th>
+                        <th>13961.425V</th>
+                      </tr>
+                      <tr>
+                        <th>D/L</th>
+                        <th>11661.425H</th>
+                      </tr>
+                       <tr>
+                        <th>S/R</th>
+                        <th>2.333</th>
+                      </tr>
+                      <tr>
+                        <th>4PSK</th>
+                        <th>3/4</th>
+                      </tr>
+                    </table>
+                 </div>
+                 <div id="chp">
+                    <table class="table table-striped table-bordered" style="width:15%">
+
+                      <tr>
+                        <th style="color:red; border:1px solid red;">Channel</th>
+                        <th style="color:red; border:1px solid red;">P</th>
+                      </tr>
+                      <tr>
+                        <td>Sat</td>
+                        <td>E16A</td>
+                      </tr>
+                       <tr>
+                        <th>U/L</th>
+                        <th>14216.8H</th>
+                      </tr>
+                      <tr>
+                        <th>D/L</th>
+                        <th>12716.8V</th>
+                      </tr>
+                       <tr>
+                        <th>S/R</th>
+                        <th>2.4</th>
+                      </tr>
+                      <tr>
+                        <th>8PSK</th>
+                        <th>3/4</th>
+                      </tr>
+                    </table>
+                 </div>
+                 <div id="chq">
+                   <table class="table table-striped table-bordered" style="width:15%">
+                        <tr>
+                        <th style="color:red; border:1px solid red;">Channel</th>
+                        <th style="color:red; border:1px solid red;">Q</th>
+                      </tr>
+                      <tr>
+                        <td>Sat</td>
+                        <td>E16A</td>
+                      </tr>
+                       <tr>
+                        <th>U/L</th>
+                        <th>14219.8H</th>
+                      </tr>
+                      <tr>
+                        <th>D/L</th>
+                        <th>12719.8V</th>
+                      </tr>
+                       <tr>
+                        <th>S/R</th>
+                        <th>2.4</th>
+                      </tr>
+                      <tr>
+                        <th>8PSK</th>
+                        <th>3/4</th>
+                      </tr>
+                   </table>
+                 </div>
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock %}

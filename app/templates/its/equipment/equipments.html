@@ -1,0 +1,71 @@
+<!-- app/templates/admin/equipment/equipments.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Equipment{% endblock %}
+{% block body %}
+<div class="mainbg">
+  <div class="content-section">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 class='spacyan' style="text-align:center;">Store</h1>
+        {% if equipment %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="15%"> Type </th>
+                  <th width="15%"> Name </th>
+                  <th width="40%"> Description </th>
+                  <th width="20%"> Serial Number</th>
+                  <th width="20%"> Model Number</th>
+                  <th width="20%"> Location</th>
+                  <th width="30%"> Status </th>
+                  <th width="15%"> Edit </th>
+                  <th width="15%"> Delete </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for equipment in equipment %}
+                <tr>
+                  <td><a href="{{ url_for('its.list_equipment_type', type=equipment.type|string()) }}"> {{ equipment.type }} </td>
+                  <td> {{ equipment.name }} </td>
+                  <td> {{ equipment.description }} </td>
+                  <td> {{ equipment.serialnumber }} </td>
+                  <td> {{ equipment.modelnumber }} </td>
+                  <td> {{ equipment.location }}  </td>
+                  <td> {{ equipment.status }}  </td>
+                  <td>
+                    <a href="{{ url_for('its.edit_equipment', id=equipment.id) }}">
+                      <i class="fa fa-pencil"></i> Edit
+                    </a>
+                  </td>
+                  <td>
+                    <a href="{{ url_for('its.delete_equipment', id=equipment.id) }}">
+                      <i class="fa fa-trash"></i> Delete
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No equipment have been added. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+          <a href="{{ url_for('its.add_equipment') }}" class="btn btn-default btn-lg">
+            <i class="fa fa-plus"></i>
+            Add Equipment
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
